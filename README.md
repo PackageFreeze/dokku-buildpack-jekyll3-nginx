@@ -1,31 +1,22 @@
-This is a dokku buildpack for installing Jekyll 3. It uses `Ruby 2.2.1` and `nginx 1.5.7`
-
-Tested with:
-- `dokku 0.11.4` and `jekyll-3.6.2` on Ubuntu 16.04.
+This is a dokku buildpack for installing Jekyll 3.
 
 ### Usage
 
-Just add a `.buildpacks` file in the root of your Jekyll project containing:
+Add a `.buildpacks` file in the root of your jekyll project containing:
 
 ```
-https://github.com/heroku/heroku-buildpack-nginx.git
-https://github.com/inket/dokku-buildpack-jekyll3-nginx.git
+https://github.com/GlueDigital/dokku-buildpack-jekyll3.git
+https://github.com/heroku/heroku-buildpack-static.git
 ```
 
-(Delete any previous `.env` file that contain `export BUILDPACK_URL=...`)
+And a `static.json` file (in the root too) containing:
 
-### Other
-
-For Jekyll 2.x, use [inket/dokku-buildpack-jekyll-nginx](https://github.com/inket/dokku-buildpack-jekyll-nginx)
+```
+{
+  "root": "_site/"
+}
+```
 
 ### Credit
 
-Fork tree:
-
-- [inket/dokku-buildpack-jekyll-nginx](https://github.com/inket/dokku-buildpack-jekyll-nginx)
-
-	- [shsteven/dokku-buildpack-jekyll-nginx](https://github.com/shsteven/dokku-buildpack-jekyll-nginx)
-
-		- [nbudin/heroku-buildpack-jekyll-nginx](https://github.com/nbudin/heroku-buildpack-jekyll-nginx)
-
-			- [mchung/heroku-buildpack-nginx](https://github.com/mchung/heroku-buildpack-nginx)
+Based on [inket/dokku-buildpack-jekyll-nginx](https://github.com/inket/dokku-buildpack-jekyll-nginx).

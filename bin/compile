@@ -28,22 +28,9 @@ if [[ `ruby -v` == "ruby 1"* ]]; then
   rbenv rehash
   rbenv local 2.2.5
   rbenv global 2.2.5
+  echo "-----> Using `ruby -v`"
 else
   echo "-----> Using `ruby -v`"
-fi
-
-# build nginx config unless overridden by user
-if [ ! -f $BUILD_DIR/conf/nginx.conf ]; then
-  echo "-----> Using default nginx.conf.erb"
-  mkdir -p $BUILD_DIR/conf
-  cp $LP_DIR/conf/nginx.conf.erb $BUILD_DIR/conf/nginx.conf.erb
-fi
-
-# build mime.types unless overridden by user
-if [ ! -f $BUILD_DIR/conf/mime.types ]; then
-  echo "-----> Using default mime.types"
-  mkdir -p $BUILD_DIR/conf
-  cp $LP_DIR/conf/mime.types $BUILD_DIR/conf/mime.types
 fi
 
 export GEM_HOME=$BUILD_DIR/.gems
@@ -53,12 +40,7 @@ if [ ! -f $BUILD_DIR/.gems/bin/jekyll ]; then
     echo "Jekyll not found!"
     echo "-----> Installing Jekyll"
 
-    # Newer versions depend on ruby_dep which needs newer ruby versions
-    gem install listen -v "< 3.1" --no-rdoc --no-ri | indent
-
-    gem install liquid --no-rdoc --no-ri | indent
-    gem install jekyll redcarpet sass --no-rdoc --no-ri | indent
-    gem install therubyracer --no-rdoc --no-ri | indent
+    gem install jekyll sass --no-rdoc --no-ri | indent
 
     if [ -f $BUILD_DIR/Gemfile ]; then
       gem install bundler --no-rdoc --no-ri | indent
@@ -82,14 +64,3 @@ $BUILD_DIR/.gems/bin/jekyll build | indent
 if [ -f sass/style.scss ]; then
   $BUILD_DIR/.gems/bin/sass sass/style.scss style.css | indent
 fi
-
-# build a startup script
-cat <<EOF >"$BUILD_DIR/bin/start_nginx"
-#!/usr/bin/env bash
-erb conf/nginx.conf.erb > conf/nginx.conf
-mkdir -p logs
-touch logs/access.log logs/error.log
-(tail -qF -n 0 --pid=\$\$ logs/*.log &)
-exec bin/nginx -p .
-EOF
-chmod +x "$BUILD_DIR/bin/start_nginx"
