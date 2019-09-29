@@ -33,6 +33,7 @@ rbenv global 2.4.0
 rbenv local 2.4.0
 rbenv rehash
 
+gem update --system
 gem install bundler
 rbenv rehash
 
