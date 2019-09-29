@@ -24,12 +24,14 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/garnieretienne/rvm-download.git ~/.rbenv/plugins/rvm-download
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 
+eval "$(rbenv init -)"
 rbenv download 2.4.0
 rbenv global 2.4.0
 rbenv local 2.4.0
+rbenv shell 2.4.0
 rbenv rehash
 
-gem update --system
+#gem update --system
 gem install bundler
 rbenv rehash
 
