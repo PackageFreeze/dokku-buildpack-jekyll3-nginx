@@ -33,7 +33,7 @@ rbenv global 2.4.0
 rbenv rehash
 
 gem install bundler
-rbenv install
+rbenv rehash
 
 echo "-----> Using `ruby -v`"
 
