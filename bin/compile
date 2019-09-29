@@ -50,10 +50,10 @@ echo "-----> Building Jekyll site"
 cd $BUILD_DIR
 
 if [ -f $BUILD_DIR/Gemfile ]; then
-  $BUILD_DIR/.gems/bin/bundle install --binstubs=$BUILD_DIR/.gems/bin --path=$BUILD_DIR/.gems | indent
+  bundle install --binstubs=$BUILD_DIR/.gems/bin --path=$BUILD_DIR/.gems | indent
 fi
 
-$BUILD_DIR/.gems/bin/jekyll build | indent
+jekyll build | indent
 if [ -f sass/style.scss ]; then
   $BUILD_DIR/.gems/bin/sass sass/style.scss style.css | indent
 fi
