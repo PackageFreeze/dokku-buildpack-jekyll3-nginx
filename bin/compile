@@ -22,11 +22,7 @@ function indent() {
 echo "-----> Installing rbenv"
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/garnieretienne/rvm-download.git ~/.rbenv/plugins/rvm-download
-git clone -- https://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-
-rbenv bundler on
-rbenv rehash
 
 rbenv download 2.4.0
 rbenv global 2.4.0
@@ -34,6 +30,7 @@ rbenv local 2.4.0
 rbenv rehash
 
 gem update --system
+gem install bundler
 rbenv rehash
 
 echo "-----> Using `ruby -v`"
