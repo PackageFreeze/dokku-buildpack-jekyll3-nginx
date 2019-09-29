@@ -24,9 +24,17 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/garnieretienne/rvm-download.git ~/.rbenv/plugins/rvm-download
 git clone -- https://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+
+rbenv bundler on
+rbenv rehash
+
 rbenv download 2.4.0
 rbenv global 2.4.0
 rbenv rehash
+
+gem install bundler
+rbenv install
+
 echo "-----> Using `ruby -v`"
 
 export GEM_HOME=$BUILD_DIR/.gems
