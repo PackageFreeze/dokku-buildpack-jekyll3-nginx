@@ -44,12 +44,16 @@ if [ ! -f $BUILD_DIR/.gems/bin/jekyll ]; then
     echo "Jekyll not found!"
     echo "-----> Installing Jekyll"
 
-    gem install jekyll sass --no-rdoc --no-ri | indent
+  #  gem install jekyll sass --no-rdoc --no-ri | indent
 
     if [ -f $BUILD_DIR/Gemfile ]; then
-      gem install bundler --no-rdoc --no-ri | indent
+  #    gem install bundler --no-rdoc --no-ri | indent
     fi
 fi
+
+    if [ -f $BUILD_DIR/Gemfile ]; then
+  #    gem install bundler --no-rdoc --no-ri | indent
+    fi
 
 # Set charset to avoid https://github.com/jekyll/jekyll/issues/4268
 echo "-----> Setting UTF-8 environment"
