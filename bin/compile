@@ -49,7 +49,7 @@ echo "-----> Building Jekyll site"
 cd $BUILD_DIR
 
 if [ -f $BUILD_DIR/Gemfile ]; then
-  bundle install --no-rdoc --no-ri --binstubs=$BUILD_DIR/.gems/bin --path=$BUILD_DIR/.gems | indent
+  bundle install --binstubs=$BUILD_DIR/.gems/bin --path=$BUILD_DIR/.gems | indent
 fi
 
 jekyll build | indent
